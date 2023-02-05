@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 29 28.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #8e97cd;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #c0c9ff;
+        stroke-miterlimit: 10;
+      }
+    </style>
+    <mask id="mask" x="-1.5" y="-1.75" width="32" height="32" maskUnits="userSpaceOnUse">
+      <g id="mask0_204_3463" data-name="mask0 204 3463">
+        <rect class="cls-1" x="-1.5" y="-1.75" width="32" height="32"/>
+      </g>
+    </mask>
+  </defs>
+  <rect class="cls-2" x=".75" y="10.36" width="12.97" height="17.64" rx="2.36" ry="2.36"/>
+  <rect class="cls-2" x="15.28" y=".5" width="12.97" height="17.64" rx="2.36" ry="2.36"/>
+  <rect class="cls-2" x="3.22" y="-1.96" width="8.04" height="12.97" rx="1.46" ry="1.46" transform="translate(2.72 11.76) rotate(-90)"/>
+  <rect class="cls-2" x="17.75" y="17.49" width="8.04" height="12.97" rx="1.46" ry="1.46" transform="translate(-2.21 45.75) rotate(-90)"/>
+</svg>

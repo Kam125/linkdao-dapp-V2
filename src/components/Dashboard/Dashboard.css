@@ -1,0 +1,50 @@
+.fssd01 {
+  display: flex;
+  margin: auto;
+  padding: 2%;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.fssd02 {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 4%;
+  width: 28%;
+  background: #2a2859;
+  box-shadow: 0 32px 64px rgb(17 17 17 / 8%);
+  border-radius: 12px;
+  /* padding: 20px; */
+  /* border: 2px solid #2a2859; */
+  transition: all 0.25s;
+  justify-content: center;
+}
+
+.fssd03 {
+  color: #52e1de;
+  font-size: 25px;
+  font-size: calc(calc(1rem + 1vw));
+}
+
+.fssd04 {
+  color: #fff;
+  margin-top: 10px;
+  font-size: calc(0.8rem + 0.8vw);
+}
+
+@media (max-width: 1000px) {
+  .fssd02 {
+    /* padding: 4vw; */
+    margin: 2% auto;
+    width: 85%;
+  }
+  .fssd01 {
+    flex-direction: column;
+  }
+}
+
+.fssd05 {
+  width: 95%;
+  margin: 25px auto 1%;
+}
