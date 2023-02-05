@@ -41,3 +41,9 @@ export const getWithdrawableTotalProfit = async(provider,pool,poolABI,account)=>
     let res = await cont.getWithdrawableTotalProfit(account)
     return parseFloat(ethers.utils.formatUnits(res, 18)).toFixed(3)
 }
+
+export const totalRewardsPaid = async(provider,pool,poolABI)=>{
+    let cont = await contract(provider,pool,poolABI)
+    let res = await cont.totalReward()
+    return parseFloat(ethers.utils.formatUnits(res, 18)).toFixed(2)
+}

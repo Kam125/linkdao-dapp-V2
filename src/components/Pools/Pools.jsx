@@ -7,12 +7,13 @@ import Coin from "../../images/new_imgs/Coin.svg";
 import earnHeroStats from "../../images/new_imgs/earnHeroStats.webp";
 import coinBackground from "../../images/new_imgs/coinBackground.webp";
 import { getPrice } from "../../utils";
-import { totalStakedFunc } from "../../contracts/pools";
+import { totalRewardsPaid, totalStakedFunc } from "../../contracts/pools";
 import { ConnectContext } from "../../context/ConnectContext";
 
 const Pools = () => {
   const [price, setPrice] = useState(0);
   const [staked, setStaked] = useState(0);
+  const [rewardsPaid,setRewardPaid] = useState(0)
   const [provider] = useContext(ConnectContext);
 
   const handlePrice = useCallback(async () => {
@@ -35,10 +36,26 @@ const Pools = () => {
     });
   }, [provider]);
 
+  const handleTotalRewardsPaid = useCallback(async () => {
+    let stk = data.map(async ({ pool, poolAbi }) => {
+      let res = await totalRewardsPaid(provider, pool, poolAbi);
+      return res;
+    });
+    let v1 = stk.reduce(async (v1, v2) => {
+      let a = await v1;
+      let b = await v2;
+      return parseFloat(a) + parseFloat(b);
+    }, 0);
+    v1.then((res) => {
+      setRewardPaid(res);
+    });
+  }, [provider]);
+
   useEffect(() => {
     handlePrice();
     handleTotalStaked();
-  }, [handlePrice, handleTotalStaked]);
+    handleTotalRewardsPaid()
+  }, [handlePrice, handleTotalRewardsPaid, handleTotalStaked]);
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
@@ -94,7 +111,7 @@ const Pools = () => {
                     textAlign: "start",
                   }}
                 >
-                  $17,931,901.77
+                 ${rewardsPaid}
                 </span>
               </div>
               <img
