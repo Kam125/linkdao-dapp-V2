@@ -454,11 +454,12 @@
     margin-left: -5vw;
   }
 }
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .coinbg {
     margin-left: 3vw;
   }
 }
+
 @media (max-width: 386px) {
   .coinbg {
     margin-left: -1vw;
