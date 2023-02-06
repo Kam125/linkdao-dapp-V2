@@ -111,7 +111,7 @@ const Pools = () => {
                     textAlign: "start",
                   }}
                 >
-                 ${rewardsPaid}
+                 ${parseFloat(rewardsPaid * price).toFixed(3)}
                 </span>
               </div>
               <img
