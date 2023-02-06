@@ -97,7 +97,7 @@ const Header = () => {
           <div className="row w-100">
             <div className="col-1 d-none d-lg-block" />
             <div className={`${window.innerWidth > 991 ? "col-11" : "col-12"}`}>
-              <div className="container-lg px-0 d-flex justify-content-between gap-3 align-items-center w-100">
+              <div className="container-lg px-0 d-flex justify-content-between gap-3 align-items-center mw-100">
                 <div className="d-none d-lg-flex flex-column gap-2 text-start">
                   <h4
                     className="text-white"
