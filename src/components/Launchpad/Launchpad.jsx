@@ -415,11 +415,11 @@ const Launchpad = () => {
               </div>
             </div>
             <div className={toggleState === 2 ? "empty-item" : "no-item"}>
-              <img src={noItem} style={{ width: "85%" }} />
+              <img src={noItem} style={{ width: "85%" }} alt="" />
               <p>No data yet </p>
             </div>
             <div className={toggleState === 1 ? "empty-item" : "no-item"}>
-              <img src={noItem} style={{ width: "85%" }} />
+              <img src={noItem} style={{ width: "85%" }} alt="" />
               <p>No data yet </p>
             </div>
           </div>

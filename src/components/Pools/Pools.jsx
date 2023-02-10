@@ -9,11 +9,12 @@ import coinBackground from "../../images/new_imgs/coinBackground.webp";
 import { getPrice } from "../../utils";
 import { totalRewardsPaid, totalStakedFunc } from "../../contracts/pools";
 import { ConnectContext } from "../../context/ConnectContext";
+import FAQuestion from "../FAQuestion";
 
 const Pools = () => {
   const [price, setPrice] = useState(0);
   const [staked, setStaked] = useState(0);
-  const [rewardsPaid,setRewardPaid] = useState(0)
+  const [rewardsPaid, setRewardPaid] = useState(0);
   const [provider] = useContext(ConnectContext);
 
   const handlePrice = useCallback(async () => {
@@ -54,7 +55,7 @@ const Pools = () => {
   useEffect(() => {
     handlePrice();
     handleTotalStaked();
-    handleTotalRewardsPaid()
+    handleTotalRewardsPaid();
   }, [handlePrice, handleTotalRewardsPaid, handleTotalStaked]);
 
   useLayoutEffect(() => {
@@ -111,7 +112,7 @@ const Pools = () => {
                     textAlign: "start",
                   }}
                 >
-                 ${parseFloat(rewardsPaid * price).toFixed(3)}
+                  ${parseFloat(rewardsPaid * price).toFixed(3)}
                 </span>
               </div>
               <img
@@ -167,6 +168,8 @@ const Pools = () => {
           );
         }
       )}
+
+      <FAQuestion />
     </>
   );
 };

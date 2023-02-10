@@ -606,16 +606,10 @@ hr {
   color: #f7f7fc;
   background: #26264f;
 }
-.accordion-button::after {
-  filter: brightness(0%) invert(80%);
-}
 
 .accordion-button:not(.collapsed) {
   background: #1e1c40;
   color: #4ed5d2;
-}
-.accordion-button:not(.collapsed)::after {
-  filter: brightness(0%) invert(80%);
 }
 
 .accordion-button:focus {
@@ -935,4 +929,58 @@ hr {
 
 .ct1-inputpool p a:hover {
   color: #52e1de !important;
+}
+
+#earnfaq {
+  z-index: 2;
+  position: relative;
+  margin: auto;
+  max-width: 96%;
+}
+
+.accordion-item {
+  margin-bottom: 2px;
+}
+.accordion-body {
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  line-height: 20px !important;
+  letter-spacing: -0.018em !important;
+  color: #f0f0f5 !important;
+  padding: 10px;
+  background: #1e1c40;
+  border: 1px solid #565891;
+  border-top: none;
+}
+
+.accordion-button:not(.collapsed) {
+  border: 1px solid #565891;
+}
+
+.accordion-button {
+  border: 1px solid #565891;
+}
+
+.accordion-button:focus {
+  border: 1px solid #565891;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("../../images/new_imgs/arrowActive.svg");
+  background-size: 25px;
+  color: #52e1de;
+  transform: rotate(-180deg);
+}
+
+.accordion-button::after {
+  background-image: url("../../images/new_imgs/arrowPassive.svg");
+  background-size: 25px;
+}
+
+.accordion-item:first-of-type .accordion-button {
+  border-radius: 8px 8px 0 0 !important;
+}
+
+.accordion-item:last-of-type .accordion-button.collapsed {
+  border-radius: 0 0 8px 8px !important;
 }
