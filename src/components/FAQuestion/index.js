@@ -7,7 +7,7 @@ const FAQuestion = () => {
         id="earnfaq"
         className="gap-4 gap-lg-0 w-100 my-5 p-0 faq-container justify-content-between"
       >
-        <div className="px-0 px-lg-2 ps-xl-0">
+        <div className="px-0 px-lg-2 ps-xl-0 mt-5">
           <h3 className="mb-3" style={{ color: "rgb(247, 247, 252)" }}>
             Stake FAQs
           </h3>

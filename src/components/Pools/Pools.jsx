@@ -168,7 +168,7 @@ const Pools = () => {
           );
         }
       )}
-
+      <div className="mb-6"></div>
       <FAQuestion />
     </>
   );

@@ -984,3 +984,7 @@ hr {
 .accordion-item:last-of-type .accordion-button.collapsed {
   border-radius: 0 0 8px 8px !important;
 }
+
+.mb-6 {
+  margin-bottom: 7rem;
+}
