@@ -230,12 +230,17 @@ const Pool = ({
                       <div className="borderpool"></div>
                       <div className="row">
                         <div className="jssp205 col-4">
-                          <div className="ct1-inputpool">
+                          <div className="ct1-inputpool"
+                          style={{
+                            border: "1px solid rgb(128, 128, 128, 0.9)",
+                            borderRadius: "10px" 
+                          }}>
                             <input
                               type="text"
                               placeholder="0.0"
-                              value={deposit}
+                              value={Math.floor(deposit)<=5000?Math.floor(deposit):5000}
                               onChange={(e) => setDeposit(e.target.value)}
+                              style={{border:"none"}}
                             />
                             {/* <span className="ct1-max"> MAX</span> */}
                             <span
@@ -245,7 +250,20 @@ const Pool = ({
                               {" "}
                               MAX
                             </span>
+                            <div>
+                            <p
+                            style={{
+                              fontSize: "smaller",
+                              color: "#9a9ab4",
+                              marginTop:"-8px",
+                              paddingLeft:"16px",
+                              paddingBottom:"10px"
+                            }}
+                            >{Math.floor(price*deposit)} USD</p>
+                            </div>
                           </div>
+                          {/* <div> */}
+                          {/* </div> */}
                           {/* <ReactSlider/> */}
                           <div className="claim_box">
                             {depositOn ? (

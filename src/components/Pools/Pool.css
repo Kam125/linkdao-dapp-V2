@@ -166,7 +166,7 @@
   border: 2px solid #565891;
   border-radius: 12px;
   padding: 2vw;
-  height: 208px;
+  max-height: 30vh;
   /* flex-basis: 28%; */
   margin: auto;
   background: #1e1c40;
@@ -926,6 +926,7 @@ hr {
     height: 70px;
   }
 }
+
 
 .ct1-inputpool p a:hover {
   color: #52e1de !important;
