@@ -259,7 +259,7 @@ const Pool = ({
                               paddingLeft:"16px",
                               paddingBottom:"10px"
                             }}
-                            >{Math.floor(price*deposit)} USD</p>
+                            >${parseFloat(price*deposit).toFixed(3)}</p>
                             </div>
                           </div>
                           {/* <div> */}
