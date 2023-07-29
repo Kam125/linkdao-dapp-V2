@@ -10,6 +10,8 @@ import {
   dailyReward,
   totalStakedFunc,
   getWithdrawableTotalProfit,
+  maxRewardsPerc,
+  getTotalRewardsPaid,
 } from "../../contracts/pools";
 import { NetworkContext } from "../../context/NetworkContext";
 import { ConnectContext } from "../../context/ConnectContext";
@@ -42,6 +44,8 @@ const Pool = ({
   const [totalStaked, setTotalStaked] = useState(0);
   const [profit, setProfit] = useState(0);
   const [price, setPrice] = useState(0);
+  const [mrp, setMrp] = useState(0)
+  const [totalRewardsPaid, setTotalRewardsPaid] = useState(0)
 
   const handleApprove = async (address, abi) => {
     let res = await approve(provider, address, abi, pool);
@@ -56,6 +60,16 @@ const Pool = ({
       else setStatus(false);
       return status;
     }
+  };
+
+  const handleMrp = async () => {
+    let res = await maxRewardsPerc(provider, pool, poolABI);
+    setMrp(res);
+  };
+
+  const handleTotalRewardsPaid = async () => {
+    let res = await getTotalRewardsPaid(provider, pool, poolABI);
+    setTotalRewardsPaid(res);
   };
 
   const handleDeposit = async (deposit) => {
@@ -113,12 +127,14 @@ const Pool = ({
     handleDailyReward();
     handleTotalStaked();
     handleProfit(account);
+    handleMrp()
+    handleTotalRewardsPaid()
   });
 
   useEffect(() => {
     handlePrice();
   }, [handlePrice]);
-
+  
   return (
     <div>
       <div>
@@ -169,6 +185,10 @@ const Pool = ({
                             <div>{deposited} LKD</div>
                             <div className="text_grey mt-2">Deposited</div>
                           </div>
+                          <div className="jssp204">
+                            <div>{deposited + deposited * (mrp/1000) - totalRewardsPaid} LKD</div>
+                            <div className="text_grey mt-2">LKD Remaining</div>
+                          </div>
                         </div>
                         <div className="jssp214">
                           <div className="jssp204">
@@ -197,6 +217,10 @@ const Pool = ({
                           <div className="divfarm">
                             <div>{deposited} LKD</div>
                             <div className="text_grey">Deposited</div>
+                          </div>
+                          <div className="divfarm">
+                            <div>{deposited + deposited * (mrp/1000) - totalRewardsPaid} LKD</div>
+                            <div className="text_grey">LKD Remaining</div>
                           </div>
                         </div>
                         <div className="borderfarm marginh"></div>

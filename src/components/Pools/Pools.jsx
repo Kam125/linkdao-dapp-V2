@@ -7,7 +7,7 @@ import Coin from "../../images/new_imgs/Coin.svg";
 import earnHeroStats from "../../images/new_imgs/earnHeroStats.webp";
 import coinBackground from "../../images/new_imgs/coinBackground.webp";
 import { getPrice } from "../../utils";
-import { totalRewardsPaid, totalStakedFunc } from "../../contracts/pools";
+import { getTotalRewardsPaid, totalStakedFunc } from "../../contracts/pools";
 import { ConnectContext } from "../../context/ConnectContext";
 import FAQuestion from "../FAQuestion";
 
@@ -39,7 +39,7 @@ const Pools = () => {
 
   const handleTotalRewardsPaid = useCallback(async () => {
     let stk = data.map(async ({ pool, poolAbi }) => {
-      let res = await totalRewardsPaid(provider, pool, poolAbi);
+      let res = await getTotalRewardsPaid(provider, pool, poolAbi);
       return res;
     });
     let v1 = stk.reduce(async (v1, v2) => {

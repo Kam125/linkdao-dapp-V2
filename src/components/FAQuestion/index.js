@@ -14,11 +14,11 @@ const FAQuestion = () => {
           <div className="faq-items-container p-3">
             {/* Accordion */}
 
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
+            <div className="accordion accordion-flush" id="accordionFlushExample">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingOne">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseOne"
@@ -30,11 +30,11 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseOne"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingOne"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     LKD Staking is an Earn solution that allows users to deposit
                     LKD tokens into an Audited, Ownership free staking smart
                     contract to earn rewards.
@@ -42,10 +42,10 @@ const FAQuestion = () => {
                 </div>
               </div>
 
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingTwo">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseTwo"
@@ -57,20 +57,20 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseTwo"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingTwo"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     Currently, LKD offers staking on BNB chain.
                   </div>
                 </div>
               </div>
 
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingThree">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingThree">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseThree"
@@ -82,21 +82,21 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseThree"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingThree"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     LinkDao offers recurring pool reward system which means
                     rewards occurring periodically.
                   </div>
                 </div>
               </div>
 
-              <div class="accordion-item" style={{ display: "none" }}>
-                <h2 class="accordion-header" id="flush-headingFour">
+              <div className="accordion-item" style={{ display: "none" }}>
+                <h2 className="accordion-header" id="flush-headingFour">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseFour"
@@ -108,11 +108,11 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseFour"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingFour"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     LKD Staking is an Earn solution that allows users to deposit
                     LKD tokens into an Audited, Ownership free staking smart
                     contract to earn rewards.
@@ -120,10 +120,10 @@ const FAQuestion = () => {
                 </div>
               </div>
 
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingFive">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingFive">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseFive"
@@ -135,11 +135,11 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseFive"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingFive"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     The rewards are shown in real time on the Earn dApp and will
                     need to be claimed in order to transfer the rewards to the
                     user's wallet.
@@ -147,10 +147,10 @@ const FAQuestion = () => {
                 </div>
               </div>
 
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingSix">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingSix">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseSix"
@@ -162,11 +162,11 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseSix"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingSix"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     Follow these steps to withdraw assets:
                     <br />- Head to the earn section on LKD dApp where the
                     crypto assets are being staked.
@@ -176,10 +176,10 @@ const FAQuestion = () => {
                 </div>
               </div>
 
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingSeven">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingSeven">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseSeven"
@@ -191,11 +191,11 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseSeven"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingSeven"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     Annual percentage rate (APR) is a percentage that reflects
                     the amount of money or interest you earn on an account over
                     the course of one entire year.
@@ -203,10 +203,10 @@ const FAQuestion = () => {
                 </div>
               </div>
               {/*  */}
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingEight">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingEight">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseEight"
@@ -219,21 +219,21 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseEight"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingEight"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     No, user will continue to receive their rewards based on the
                     Fixed APR.
                   </div>
                 </div>
               </div>
               {/*  */}
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingNine">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingNine">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseNine"
@@ -245,11 +245,11 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseNine"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingNine"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     LinkDao offers 100% safe earning pools. All the smart
                     contracts in LinkDao DeFi platform is 100% Ownership free
                     and fully Audited by BlockSafu audited company.
@@ -257,10 +257,10 @@ const FAQuestion = () => {
                 </div>
               </div>
               {/*  */}
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTen">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingTen">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseTen"
@@ -272,11 +272,11 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseTen"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingTen"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     The smart contracts which is not governed by any corncern
                     authority. A smart contract is a computer program or a
                     transaction protocol that is intended to automatically
@@ -286,10 +286,10 @@ const FAQuestion = () => {
                 </div>
               </div>
               {/*  */}
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingEleven">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="flush-headingEleven">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseEleven"
@@ -301,11 +301,11 @@ const FAQuestion = () => {
                 </h2>
                 <div
                   id="flush-collapseEleven"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   aria-labelledby="flush-headingEleven"
                   data-bs-parent="#accordionFlushExample"
                 >
-                  <div class="accordion-body px-4">
+                  <div className="accordion-body px-4">
                     The LinkDao DeFi platform can be access through any web3
                     crypto wallet and mobile wallet which contains dApp browser.
                     The recommended Web3 crypto wallet is Metamask and Mobile

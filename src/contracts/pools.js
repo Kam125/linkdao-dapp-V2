@@ -42,8 +42,14 @@ export const getWithdrawableTotalProfit = async(provider,pool,poolABI,account)=>
     return parseFloat(ethers.utils.formatUnits(res, 18)).toFixed(3)
 }
 
-export const totalRewardsPaid = async(provider,pool,poolABI)=>{
+export const getTotalRewardsPaid = async(provider,pool,poolABI)=>{
     let cont = await contract(provider,pool,poolABI)
     let res = await cont.totalReward()
+    return parseFloat(ethers.utils.formatUnits(res, 18)).toFixed(2)
+}
+
+export const maxRewardsPerc = async(provider,pool,poolABI)=>{
+    let cont = await contract(provider,pool,poolABI)
+    let res = await cont.MAX_REWARD_PERCENTAGE()
     return parseFloat(ethers.utils.formatUnits(res, 18)).toFixed(2)
 }
