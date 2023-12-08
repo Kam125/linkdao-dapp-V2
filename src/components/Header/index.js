@@ -25,7 +25,7 @@ const Header = () => {
       // setInstance(instance);
       let provider = new ethers.providers.Web3Provider(instance);
       setProvider(provider);
-      const accounts = await provider.listAccounts();
+      const accounts = await provider?.listAccounts();
       if (accounts) {
         setAccount(accounts[0]);
         // window.location.reload();

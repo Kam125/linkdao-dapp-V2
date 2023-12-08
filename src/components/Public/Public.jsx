@@ -32,7 +32,7 @@ const Public = () => {
 
   const handleCheckApprove = async () => {
     // let provider = await modal();
-    const accounts = await provider.listAccounts();
+    const accounts = await provider?.listAccounts();
     if (accounts) {
       let value = await checkApprove(accounts[0], publicAddress, provider);
       console.log(value.toString());
@@ -62,7 +62,7 @@ const Public = () => {
 
   const handleInitialClaim = async () => {
     // let provider = await modal();
-    const accounts = await provider.listAccounts();
+    const accounts = await provider?.listAccounts();
     if (accounts) {
       let result = await claimInitialToken(accounts[0], provider);
       console.log(result);
@@ -70,7 +70,7 @@ const Public = () => {
   };
   const handleClaim = async () => {
     // let provider = await modal();
-    const accounts = await provider.listAccounts();
+    const accounts = await provider?.listAccounts();
     if (accounts) {
       claimToken(accounts[0], provider);
     }
@@ -87,7 +87,7 @@ const Public = () => {
 
   const handleBalance = async () => {
     // let provider = await modal();
-    const accounts = await provider.listAccounts();
+    const accounts = await provider?.listAccounts();
     if (accounts) {
       let sum = await checkBalance(accounts[0], provider);
       setBalance(sum);
@@ -96,7 +96,7 @@ const Public = () => {
 
   const handleAmount = async () => {
     // let provider = await modal();
-    const accounts = await provider.listAccounts();
+    const accounts = await provider?.listAccounts();
     if (accounts) {
       let sum = await checkAmount(accounts[0], provider);
       setAmount(sum);
@@ -105,7 +105,7 @@ const Public = () => {
 
   const handleAccountBalance = async () => {
     // let provider = await modal();
-    const accounts = await provider.listAccounts();
+    const accounts = await provider?.listAccounts();
     if (accounts) {
       let sum = await getAccountBalance(accounts[0], provider);
       setValue(sum);

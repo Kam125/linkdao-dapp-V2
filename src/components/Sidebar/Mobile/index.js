@@ -34,6 +34,15 @@ const MobileSideBar = () => {
               <img src={PoolLogo} width={25} height={25} alt="" />
             </div>
           </Link>
+          <Link className="col" to="/Bridge">
+            <div
+              className={`${
+                location.pathname === "/bridge" ? "active-side-link" : ""
+              } d-flex align-items-center sidebar-item false p-2 justify-content-center`}
+            >
+              <img src={PoolLogo} width={25} height={25} alt="" />
+            </div>
+          </Link>
           <Link className="col" to="/Farms">
             <div
               className={`${

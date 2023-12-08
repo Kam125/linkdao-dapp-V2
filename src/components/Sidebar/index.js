@@ -91,6 +91,25 @@ const Slider = () => {
                   {showNav ? <h3 className="sideitem-text">Pools</h3> : ""}
                 </div>
               </Link>
+              <Link to="/Bridge">
+                <div
+                  id="New_Bridge"
+                  className={`${
+                    location.pathname === "/Bridge" ? "active-side-link" : ""
+                  } sidebar-item gap-3 p-2 d-flex justify-content-${
+                    showNav ? "left" : "center"
+                  } align-items-center null ${
+                    showNav ? "active-width ms-4" : ""
+                  }`}
+                >
+                  <img
+                    src={PoolLogo}
+                    alt=""
+                    style={{ width: 32, height: 32 }}
+                  />
+                  {showNav ? <h3 className="sideitem-text">Bridge</h3> : ""}
+                </div>
+              </Link>
               <Link to="/Farms">
                 <div
                   id="Governance"

@@ -49,7 +49,7 @@ const Farm = ({
   };
 
   const handleCheckApprove = async (address, abi) => {
-    const accounts = await provider.listAccounts();
+    const accounts = await provider?.listAccounts();
     if (accounts) {
       let value = await checkApprove(provider, address, abi, accounts[0], farm);
       if (parseInt(value.toString()) > 0) setStatus(true);

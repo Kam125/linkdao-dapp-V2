@@ -44,8 +44,8 @@ const Pool = ({
   const [totalStaked, setTotalStaked] = useState(0);
   const [profit, setProfit] = useState(0);
   const [price, setPrice] = useState(0);
-  const [mrp, setMrp] = useState(0)
-  const [totalRewardsPaid, setTotalRewardsPaid] = useState(0)
+  const [mrp, setMrp] = useState(0);
+  const [totalRewardsPaid, setTotalRewardsPaid] = useState(0);
 
   const handleApprove = async (address, abi) => {
     let res = await approve(provider, address, abi, pool);
@@ -53,7 +53,7 @@ const Pool = ({
   };
 
   const handleCheckApprove = async (address, abi) => {
-    const accounts = await provider.listAccounts();
+    const accounts = await provider?.listAccounts();
     if (accounts) {
       let value = await checkApprove(provider, address, abi, accounts[0], pool);
       if (parseInt(value.toString()) > 0) setStatus(true);
@@ -127,14 +127,14 @@ const Pool = ({
     handleDailyReward();
     handleTotalStaked();
     handleProfit(account);
-    handleMrp()
-    handleTotalRewardsPaid()
+    handleMrp();
+    handleTotalRewardsPaid();
   });
 
   useEffect(() => {
     handlePrice();
   }, [handlePrice]);
-  
+
   return (
     <div>
       <div>
@@ -186,7 +186,12 @@ const Pool = ({
                             <div className="text_grey mt-2">Deposited</div>
                           </div>
                           <div className="jssp204">
-                            <div>{deposited + deposited * (mrp/1000) - totalRewardsPaid} LKD</div>
+                            <div>
+                              {deposited +
+                                deposited * (mrp / 1000) -
+                                totalRewardsPaid}{" "}
+                              LKD
+                            </div>
                             <div className="text_grey mt-2">LKD Remaining</div>
                           </div>
                         </div>
@@ -219,7 +224,12 @@ const Pool = ({
                             <div className="text_grey">Deposited</div>
                           </div>
                           <div className="divfarm">
-                            <div>{deposited + deposited * (mrp/1000) - totalRewardsPaid} LKD</div>
+                            <div>
+                              {deposited +
+                                deposited * (mrp / 1000) -
+                                totalRewardsPaid}{" "}
+                              LKD
+                            </div>
                             <div className="text_grey">LKD Remaining</div>
                           </div>
                         </div>
@@ -254,17 +264,23 @@ const Pool = ({
                       <div className="borderpool"></div>
                       <div className="row">
                         <div className="jssp205 col-4">
-                          <div className="ct1-inputpool"
-                          style={{
-                            border: "1px solid rgb(128, 128, 128, 0.9)",
-                            borderRadius: "10px" 
-                          }}>
+                          <div
+                            className="ct1-inputpool"
+                            style={{
+                              border: "1px solid rgb(128, 128, 128, 0.9)",
+                              borderRadius: "10px",
+                            }}
+                          >
                             <input
                               type="text"
                               placeholder="0.0"
-                              value={Math.floor(deposit)<=5000?Math.floor(deposit):5000}
+                              value={
+                                Math.floor(deposit) <= 5000
+                                  ? Math.floor(deposit)
+                                  : 5000
+                              }
                               onChange={(e) => setDeposit(e.target.value)}
-                              style={{border:"none"}}
+                              style={{ border: "none" }}
                             />
                             {/* <span className="ct1-max"> MAX</span> */}
                             <span
@@ -275,15 +291,17 @@ const Pool = ({
                               MAX
                             </span>
                             <div>
-                            <p
-                            style={{
-                              fontSize: "smaller",
-                              color: "#9a9ab4",
-                              marginTop:"-8px",
-                              paddingLeft:"16px",
-                              paddingBottom:"10px"
-                            }}
-                            >${parseFloat(price*deposit).toFixed(3)}</p>
+                              <p
+                                style={{
+                                  fontSize: "smaller",
+                                  color: "#9a9ab4",
+                                  marginTop: "-8px",
+                                  paddingLeft: "16px",
+                                  paddingBottom: "10px",
+                                }}
+                              >
+                                ${parseFloat(price * deposit).toFixed(3)}
+                              </p>
                             </div>
                           </div>
                           {/* <div> */}

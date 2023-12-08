@@ -16,6 +16,7 @@ import Header from "../Header";
 import MobileSideBar from "../Sidebar/Mobile";
 import Disclaimer from "../Disclaimer";
 import HeroBack from "../HeroBack";
+import Bridge from "../Bridge/Bridge";
 
 const Home = () => {
   return (
@@ -44,6 +45,7 @@ const Home = () => {
                 <Route path="/Farms" element={<Farms />} />
                 <Route path="/Disclaimer" element={<Disclaimer />} />
                 <Route path="/Dashboard" element={<Dashboard />} />
+                <Route path="/Bridge" element={<Bridge />} />
                 <Route path="/" element={<Pools />} />
               </Routes>
             </div>
