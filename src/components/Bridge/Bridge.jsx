@@ -13,6 +13,7 @@ function Bridge() {
   const [isWithdrawalEnabled, setIsWithdrawalEnabled] = useState(false);
   const [outputAmount, setOutputAmount] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [btnShow, setBtnShow] = useState(false);
 
   const handleDeposit = async () => {
     try {
@@ -35,6 +36,7 @@ function Bridge() {
       alert("Deposit successful!");
       fetchDeposits();
       setTokenAmount("");
+      setBtnShow(false);
     } catch (error) {
       console.error("Error depositing tokens:", error);
       alert("Error depositing tokens. Please check the console for details.");
@@ -85,6 +87,7 @@ function Bridge() {
       );
       await tx.wait();
       alert("Approval successful!");
+      setBtnShow(true);
     } catch (error) {
       console.error("Error approving spending:", error);
       alert("Error approving spending. Please check the console for details.");
@@ -207,26 +210,30 @@ function Bridge() {
                       {/* </div> */}
                       {/* <ReactSlider/> */}
                       <div className="claim_box">
-                        <div
-                          className="pool_approve fmsize"
-                          style={{
-                            background: "rgb(255, 255, 255, 0.1)",
-                            pointerEvents: isLoading ? "none" : "auto",
-                          }}
-                          onClick={handleDeposit}
-                        >
-                          Deposit
-                        </div>{" "}
-                        <div
-                          className="pool_approve back_grey fmsize "
-                          style={{
-                            background: "rgb(255, 255, 255, 0.1)",
-                            pointerEvents: isLoading ? "none" : "auto",
-                          }}
-                          onClick={handleApprove}
-                        >
-                          Approve
-                        </div>
+                        {btnShow && (
+                          <div
+                            className="pool_approve fmsize"
+                            style={{
+                              background: "rgb(255, 255, 255, 0.1)",
+                              pointerEvents: isLoading ? "none" : "auto",
+                            }}
+                            onClick={handleDeposit}
+                          >
+                            Deposit
+                          </div>
+                        )}
+                        {!btnShow && (
+                          <div
+                            className="pool_approve back_grey fmsize "
+                            style={{
+                              background: "rgb(255, 255, 255, 0.1)",
+                              pointerEvents: isLoading ? "none" : "auto",
+                            }}
+                            onClick={handleApprove}
+                          >
+                            Approve
+                          </div>
+                        )}
                       </div>
                     </div>
 
