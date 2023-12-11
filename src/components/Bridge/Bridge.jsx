@@ -1,10 +1,119 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Bridge.css";
 import Coin from "../../images/new_imgs/Coin.svg";
 import coinBackground from "../../images/new_imgs/coinBackground.webp";
 import { FiExternalLink } from "react-icons/fi";
+import { contractABI, tokenV1ABI } from "../../abi";
+import { contractAddress, tokenV1Address } from "../../address";
+import { ethers } from "ethers";
 
 function Bridge() {
+  const [tokenAmount, setTokenAmount] = useState();
+  const [amount, setAmount] = useState();
+  const [isWithdrawalEnabled, setIsWithdrawalEnabled] = useState(false);
+  const [outputAmount, setOutputAmount] = useState();
+
+  const handleDeposit = async () => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      );
+      if (isNaN(parseFloat(tokenAmount))) {
+        alert("Please enter a valid number for the token amount.");
+        return;
+      }
+      const tx = await contract.depositTokens(
+        ethers.utils.parseUnits(tokenAmount, 18)
+      );
+      await tx.wait();
+      alert("Deposit successful!");
+    } catch (error) {
+      console.error("Error depositing tokens:", error);
+      alert("Error depositing tokens. Please check the console for details.");
+    }
+  };
+
+  const handleWithdraw = async () => {
+    try {
+      // Check if withdrawal is enabled
+      if (isWithdrawalEnabled === 1) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
+        const tx = await contract.withdrawTokens();
+        await tx.wait();
+        alert("Withdrawal successful!");
+      } else {
+        alert("Withdrawal is not enabled.");
+      }
+    } catch (error) {
+      console.error("Error withdrawing tokens:", error);
+      alert("Error withdrawing tokens. Please check the console for details.");
+    }
+  };
+
+  const handleApprove = async () => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const tokenContract = new ethers.Contract(
+        tokenV1Address,
+        tokenV1ABI, // Replace with the ABI of your token contract
+        signer
+      );
+      const tx = await tokenContract.approve(
+        contractAddress,
+        ethers.utils.parseUnits(tokenAmount, 18)
+      );
+      await tx.wait();
+      alert("Approval successful!");
+    } catch (error) {
+      console.error("Error approving spending:", error);
+      alert("Error approving spending. Please check the console for details.");
+    }
+  };
+
+  useEffect(() => {
+    const fetchDeposits = async () => {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const contract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          provider
+        );
+
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
+        });
+
+        const userDeposits = await contract.deposits(accounts[0]);
+        const depositAmount = ethers.utils.formatUnits(userDeposits.amount, 18);
+        const outAmount = ethers.utils.formatUnits(
+          userDeposits.outputAmount,
+          18
+        );
+        setAmount(depositAmount);
+        setOutputAmount(outAmount);
+        const withdrawalStatus = await contract.isWithdrawalEnabled();
+        const withdrawalData = ethers.utils.formatUnits(withdrawalStatus, 18);
+        setIsWithdrawalEnabled(Number(withdrawalData));
+      } catch (error) {
+        console.error("Error fetching user deposits:", error);
+      }
+    };
+
+    fetchDeposits();
+  }, []);
+
   return (
     <div className="bridge-main margin25" style={{ minHeight: "0px" }}>
       <div className="row w-100 flex-column flex-lg-row earn-hero gap-4 gap-lg-0 p-3 p-lg-4 justify-content-between mb-sm-5">
@@ -56,12 +165,13 @@ function Bridge() {
                         <input
                           type="text"
                           placeholder="0.0"
+                          value={tokenAmount}
                           //   value={
                           //     Math.floor(deposit) <= 5000
                           //       ? Math.floor(deposit)
                           //       : 5000
                           //   }
-                          //   onChange={(e) => setDeposit(e.target.value)}
+                          onChange={(e) => setTokenAmount(e.target.value)}
                           style={{ border: "none" }}
                         />
                         {/* <span className="ct1-max"> MAX</span> */}
@@ -72,7 +182,7 @@ function Bridge() {
                           {" "}
                           MAX
                         </span>
-                        <div>
+                        {/* <div>
                           <p
                             style={{
                               fontSize: "smaller",
@@ -81,10 +191,9 @@ function Bridge() {
                               paddingLeft: "16px",
                               paddingBottom: "10px",
                             }}
-                          >
-                            {/* ${parseFloat(price * deposit).toFixed(3)} */}$ 0
+                          >$ 0
                           </p>
-                        </div>
+                        </div> */}
                       </div>
                       {/* <div> */}
                       {/* </div> */}
@@ -95,6 +204,7 @@ function Bridge() {
                           style={{
                             background: "rgb(255, 255, 255, 0.1)",
                           }}
+                          onClick={handleDeposit}
                         >
                           Deposit
                         </div>{" "}
@@ -103,16 +213,11 @@ function Bridge() {
                           style={{
                             background: "rgb(255, 255, 255, 0.1)",
                           }}
+                          onClick={handleApprove}
                         >
                           Approve
                         </div>
                       </div>
-                      <p className="text_grey fsmall mt-3 text_center">
-                        Min. deposit 1 LKD, Max. deposit 5000 LKD{" "}
-                      </p>
-                      <p className="text_grey fsmall text_center">
-                        Deposit fee 0%
-                      </p>
                     </div>
 
                     <div className="jssp205 col-4 margintop25">
@@ -121,16 +226,25 @@ function Bridge() {
                           className="ct1-inputpool"
                           style={{ flexBasis: "50%", lineHeight: "1.3rem" }}
                         >
-                          <p>LKD Earned</p>
+                          <p>Token V1 Amount</p>
                           <p
                             style={{
                               // marginTop: "1.8rem",
-                              fontSize: "1.9rem",
+                              fontSize: "1.5rem",
                             }}
                           >
-                            {0}
+                            {amount}
                           </p>
+                          <p>Token V2 Amount</p>
                           <p
+                            style={{
+                              // marginTop: "1.8rem",
+                              fontSize: "1.5rem",
+                            }}
+                          >
+                            {outputAmount}
+                          </p>
+                          {/* <p
                             style={{
                               fontSize: "smaller",
                               color: "#9a9ab4",
@@ -138,31 +252,25 @@ function Bridge() {
                             }}
                           >
                             $ 0
-                          </p>
+                          </p> */}
                         </div>
                         {/* <ReactSlider/> */}
                         <div className="claim_box" style={{ flexBasis: "50%" }}>
                           <div
-                            className="pool_claim"
+                            className="pool_claim "
                             style={{
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
                               width: "100%",
                             }}
+                            onClick={handleWithdraw}
                           >
                             Withdraw
                           </div>
                           {/* <div className="pool_claim">Withdraw All</div> */}
                         </div>
                       </div>
-                      <p className="text_grey fsmall mt-2 text_center">
-                        After deposit, you can withdraw every 30 days up to {2}{" "}
-                        month!
-                      </p>
-                      <p className="text_grey fsmall text_center">
-                        Withdraw fee 0%
-                      </p>
                     </div>
                   </div>
                 </div>

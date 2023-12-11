@@ -21,20 +21,41 @@ const Header = () => {
   const connectWallet = useCallback(async () => {
     try {
       console.log("Wallet connect called");
-      const instance = await web3Modal().connect();
-      // setInstance(instance);
+      const providerOptions = {
+        bscTestnet: {
+          chainId: "0x61", // BSC Testnet chain ID
+          rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545/", // BSC Testnet RPC endpoint
+        },
+      };
+
+      const instance = await web3Modal({
+        cacheProvider: false,
+        providerOptions,
+      }).connect();
+
       let provider = new ethers.providers.Web3Provider(instance);
       setProvider(provider);
-      const accounts = await provider?.listAccounts();
-      if (accounts) {
+
+      const network = await provider.getNetwork();
+
+      if (network.chainId !== 0x61) {
+        alert("Please connect to the BSC Testnet");
+        setError("Please connect to the BSC Testnet");
+        return;
+      }
+
+      const accounts = await provider.listAccounts();
+      if (accounts && accounts.length > 0) {
         setAccount(accounts[0]);
-        // window.location.reload();
+      } else {
+        alert("No account found");
+        setError("No account found");
       }
     } catch (error) {
-      console.error(error);
+      alert(error);
       setError(error);
     }
-  }, [setAccount, setProvider]);
+  }, [setAccount, setProvider, setError]);
 
   const refreshState = useCallback(() => {
     setAccount();

@@ -1,3 +1,4 @@
+export const contractAddress = "0xd881Cf3F3e866dbB959385cA2DdF14a8fa81d449"; // contract address
 export const token = "0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56"; // linkdao busd token mainnet
 export const address = "0xAe448B74E03838F429B3C794C8490aA6A31fe012"; //lindao seed mainnet
 export const privateAddress = "0xeD82D7746d4217642ED7028c3f28042B26866c3A"; //linldao private mainnet
@@ -15,3 +16,4 @@ export const LkdPoolP24 = "0x076243CcA7648d3c93c72EE0caA1A373f478c85B"; //Linkda
 export const LkdPoolA124 = "0x13A3ae11a23161c66eD859386D4207EF7310FE6b"; //Linkdao pool mainnet
 export const LkdPoolA224 = "0x8182E0502e8A6f2d778Ed4B65340434Fc421925a"; //Linkdao pool mainnet
 export const LkdPoolA324 = "0x8a490d17727f1f12dE73B4631a028C37CEB65E5D"; //Linkdao pool mainnet
+export const tokenV1Address = "0xDcaA637928148fE51416ADf763b14B57832CaF65";
