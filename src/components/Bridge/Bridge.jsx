@@ -200,7 +200,7 @@ function Bridge() {
                           <div
                             className="pool_approve fmsize"
                             style={{
-                              background: !spinner
+                              background: !isLoading
                                 ? "#52e1de"
                                 : "rgb(255, 255, 255, 0.1)",
                               pointerEvents: isLoading ? "none" : "auto",
@@ -214,7 +214,7 @@ function Bridge() {
                           <div
                             className="pool_approve back_grey fmsize "
                             style={{
-                              background: !spinner
+                              background: !isLoading
                                 ? "#52e1de"
                                 : "rgb(255, 255, 255, 0.1)",
                               pointerEvents: isLoading ? "none" : "auto",
@@ -270,7 +270,7 @@ function Bridge() {
                               alignItems: "center",
                               justifyContent: "center",
                               width: "100%",
-                              background: withdrawSpinner
+                              background: isLoading
                                 ? "rgba(255, 255, 255,0.1)"
                                 : "#52e1de",
                               pointerEvents: isLoading ? "none" : "auto",
