@@ -6,6 +6,7 @@ import { FiExternalLink } from "react-icons/fi";
 import { contractABI, tokenV1ABI } from "../../abi";
 import { contractAddress, tokenV1Address } from "../../address";
 import { ethers } from "ethers";
+import { Spinner } from "react-bootstrap";
 
 function Bridge() {
   const [tokenAmount, setTokenAmount] = useState();
@@ -14,10 +15,13 @@ function Bridge() {
   const [outputAmount, setOutputAmount] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [btnShow, setBtnShow] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+  const [withdrawSpinner, setWithdrawSpinner] = useState(false);
 
   const handleDeposit = async () => {
     try {
       setIsLoading(true);
+      setSpinner(true);
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
@@ -42,12 +46,14 @@ function Bridge() {
       alert("Error depositing tokens. Please check the console for details.");
     } finally {
       setIsLoading(false);
+      setSpinner(false);
     }
   };
 
   const handleWithdraw = async () => {
     try {
       setIsLoading(true);
+      setWithdrawSpinner(true);
       // Check if withdrawal is enabled
       if (isWithdrawalEnabled === 1) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -68,12 +74,14 @@ function Bridge() {
       alert("Error withdrawing tokens. Please check the console for details.");
     } finally {
       setIsLoading(false);
+      setWithdrawSpinner(false);
     }
   };
 
   const handleApprove = async () => {
     try {
       setIsLoading(true);
+      setSpinner(true);
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const tokenContract = new ethers.Contract(
@@ -93,6 +101,7 @@ function Bridge() {
       alert("Error approving spending. Please check the console for details.");
     } finally {
       setIsLoading(false);
+      setSpinner(false);
     }
   };
 
@@ -214,24 +223,28 @@ function Bridge() {
                           <div
                             className="pool_approve fmsize"
                             style={{
-                              background: "rgb(255, 255, 255, 0.1)",
+                              background: !spinner
+                                ? "#52e1de"
+                                : "rgb(255, 255, 255, 0.1)",
                               pointerEvents: isLoading ? "none" : "auto",
                             }}
                             onClick={handleDeposit}
                           >
-                            Deposit
+                            {spinner ? <Spinner size="sm" /> : "Deposit"}
                           </div>
                         )}
                         {!btnShow && (
                           <div
                             className="pool_approve back_grey fmsize "
                             style={{
-                              background: "rgb(255, 255, 255, 0.1)",
+                              background: !spinner
+                                ? "#52e1de"
+                                : "rgb(255, 255, 255, 0.1)",
                               pointerEvents: isLoading ? "none" : "auto",
                             }}
                             onClick={handleApprove}
                           >
-                            Approve
+                            {spinner ? <Spinner size="sm" /> : "Approve"}
                           </div>
                         )}
                       </div>
@@ -250,7 +263,7 @@ function Bridge() {
                               fontSize: "1.5rem",
                             }}
                           >
-                            {amount}
+                            {amount || 0}
                           </p>
                           <p>Token V2 Amount</p>
                           <p
@@ -259,7 +272,7 @@ function Bridge() {
                               fontSize: "1.5rem",
                             }}
                           >
-                            {outputAmount}
+                            {outputAmount || 0}
                           </p>
                           {/* <p
                             style={{
@@ -280,11 +293,18 @@ function Bridge() {
                               alignItems: "center",
                               justifyContent: "center",
                               width: "100%",
+                              background: withdrawSpinner
+                                ? "rgba(255, 255, 255,0.1)"
+                                : "#52e1de",
                               pointerEvents: isLoading ? "none" : "auto",
                             }}
                             onClick={handleWithdraw}
                           >
-                            Withdraw
+                            {withdrawSpinner ? (
+                              <Spinner size="sm" />
+                            ) : (
+                              "Withdraw"
+                            )}
                           </div>
                           {/* <div className="pool_claim">Withdraw All</div> */}
                         </div>
