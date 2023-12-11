@@ -12,9 +12,11 @@ function Bridge() {
   const [amount, setAmount] = useState();
   const [isWithdrawalEnabled, setIsWithdrawalEnabled] = useState(false);
   const [outputAmount, setOutputAmount] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleDeposit = async () => {
     try {
+      setIsLoading(true);
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(
@@ -31,14 +33,19 @@ function Bridge() {
       );
       await tx.wait();
       alert("Deposit successful!");
+      fetchDeposits();
+      setTokenAmount("");
     } catch (error) {
       console.error("Error depositing tokens:", error);
       alert("Error depositing tokens. Please check the console for details.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleWithdraw = async () => {
     try {
+      setIsLoading(true);
       // Check if withdrawal is enabled
       if (isWithdrawalEnabled === 1) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -57,11 +64,14 @@ function Bridge() {
     } catch (error) {
       console.error("Error withdrawing tokens:", error);
       alert("Error withdrawing tokens. Please check the console for details.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleApprove = async () => {
     try {
+      setIsLoading(true);
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const tokenContract = new ethers.Contract(
@@ -78,39 +88,37 @@ function Bridge() {
     } catch (error) {
       console.error("Error approving spending:", error);
       alert("Error approving spending. Please check the console for details.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  const fetchDeposits = async () => {
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        provider
+      );
+
+      const accounts = await window.ethereum.request({
+        method: "eth_accounts",
+      });
+
+      const userDeposits = await contract.deposits(accounts[0]);
+      const depositAmount = ethers.utils.formatUnits(userDeposits.amount, 18);
+      const outAmount = ethers.utils.formatUnits(userDeposits.outputAmount, 18);
+      setAmount(depositAmount);
+      setOutputAmount(outAmount);
+      const withdrawalStatus = await contract.isWithdrawalEnabled();
+      const withdrawalData = ethers.utils.formatUnits(withdrawalStatus, 18);
+      setIsWithdrawalEnabled(Number(withdrawalData));
+    } catch (error) {
+      console.error("Error fetching user deposits:", error);
+    }
+  };
   useEffect(() => {
-    const fetchDeposits = async () => {
-      try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const contract = new ethers.Contract(
-          contractAddress,
-          contractABI,
-          provider
-        );
-
-        const accounts = await window.ethereum.request({
-          method: "eth_accounts",
-        });
-
-        const userDeposits = await contract.deposits(accounts[0]);
-        const depositAmount = ethers.utils.formatUnits(userDeposits.amount, 18);
-        const outAmount = ethers.utils.formatUnits(
-          userDeposits.outputAmount,
-          18
-        );
-        setAmount(depositAmount);
-        setOutputAmount(outAmount);
-        const withdrawalStatus = await contract.isWithdrawalEnabled();
-        const withdrawalData = ethers.utils.formatUnits(withdrawalStatus, 18);
-        setIsWithdrawalEnabled(Number(withdrawalData));
-      } catch (error) {
-        console.error("Error fetching user deposits:", error);
-      }
-    };
-
     fetchDeposits();
   }, []);
 
@@ -203,15 +211,17 @@ function Bridge() {
                           className="pool_approve fmsize"
                           style={{
                             background: "rgb(255, 255, 255, 0.1)",
+                            pointerEvents: isLoading ? "none" : "auto",
                           }}
                           onClick={handleDeposit}
                         >
                           Deposit
                         </div>{" "}
                         <div
-                          className="pool_approve back_grey fmsize"
+                          className="pool_approve back_grey fmsize "
                           style={{
                             background: "rgb(255, 255, 255, 0.1)",
+                            pointerEvents: isLoading ? "none" : "auto",
                           }}
                           onClick={handleApprove}
                         >
@@ -263,6 +273,7 @@ function Bridge() {
                               alignItems: "center",
                               justifyContent: "center",
                               width: "100%",
+                              pointerEvents: isLoading ? "none" : "auto",
                             }}
                             onClick={handleWithdraw}
                           >
