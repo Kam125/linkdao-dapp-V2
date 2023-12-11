@@ -186,34 +186,11 @@ function Bridge() {
                           type="text"
                           placeholder="0.0"
                           value={tokenAmount}
-                          //   value={
-                          //     Math.floor(deposit) <= 5000
-                          //       ? Math.floor(deposit)
-                          //       : 5000
-                          //   }
                           onChange={(e) => setTokenAmount(e.target.value)}
                           style={{ border: "none" }}
                         />
-                        {/* <span className="ct1-max"> MAX</span> */}
-                        <span
-                          className="ct1-max"
-                          //   onClick={handleAccountBalance}
-                        >
-                          {" "}
-                          MAX
-                        </span>
-                        {/* <div>
-                          <p
-                            style={{
-                              fontSize: "smaller",
-                              color: "#9a9ab4",
-                              marginTop: "-8px",
-                              paddingLeft: "16px",
-                              paddingBottom: "10px",
-                            }}
-                          >$ 0
-                          </p>
-                        </div> */}
+
+                        <span className="ct1-max"> MAX</span>
                       </div>
                       {/* <div> */}
                       {/* </div> */}
