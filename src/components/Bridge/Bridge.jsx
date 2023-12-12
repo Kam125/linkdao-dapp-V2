@@ -142,9 +142,7 @@ function Bridge() {
             Linkdao Bridge
           </h3>
           <p className="text-white ">
-            Make the most of your assets with Linkdao Earn products. Linkdao
-            offers four ways to productively use your assets. Participate in
-            Staking, Farming, Vault and Buyback. Start earning today!
+          LinkDao Bridge enables us to convert old tokens (V1) to new tokens (V2) in 10:1 ratio.
           </p>
         </div>
         <div
