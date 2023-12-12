@@ -151,7 +151,7 @@ function Bridge() {
           className="col-12 col-lg-7 px-0 px-lg-1 d-flex gap-3 gap-lg-4 gap-xl-5 flex-column flex-lg-row justifyMedia"
           style={{ marginTop: "4%" }}
         >
-          <div className="d-flex gap-0 gap-lg-4">
+          <div className="d-flex gap-0 gap-lg-4 mb-6">
             <div className="coinbg">
               <div className="">
                 <img src={Coin} alt="" className="coin coinplus" width="25px" />

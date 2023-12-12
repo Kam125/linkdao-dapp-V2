@@ -7,6 +7,7 @@ import Dashboard from "../../images/new_imgs/Dashboard.svg";
 import governanceIcon from "../../images/new_imgs/governanceIcon.svg";
 import PoolLogo from "../../images/new_imgs/PoolLogo.svg";
 import Launchpad from "../../images/new_imgs/Launchpad.svg";
+import BridgeIcon from "../../images/new_imgs/bridgeIcon.svg";
 import "./index.css";
 import { Link, useLocation } from "react-router-dom";
 
@@ -103,7 +104,7 @@ const Slider = () => {
                   }`}
                 >
                   <img
-                    src={PoolLogo}
+                    src={BridgeIcon}
                     alt=""
                     style={{ width: 32, height: 32 }}
                   />
